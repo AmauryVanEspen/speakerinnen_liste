@@ -1,2 +1,0 @@
-describe SearchableController do
-end

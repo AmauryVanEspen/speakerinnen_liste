@@ -29,6 +29,8 @@ class Profile < ActiveRecord::Base
     lastname.strip! if lastname
   end
 
+  after_save :update_or_remove_index
+
   def after_confirmation
     AdminMailer.new_profile_confirmed(self).deliver
   end
@@ -88,6 +90,10 @@ class Profile < ActiveRecord::Base
     order('RANDOM()')
   end
 
+  def update_or_remove_index
+    if published then index_document else delete_document end rescue nil # rescue a deleted document if not indexed
+  end
+
   def password_required?
     super && provider.blank?
   end
@@ -99,24 +105,4 @@ class Profile < ActiveRecord::Base
       super
     end
   end
-
-  # def self.import
-  #   Profile.find_in_batches do |profiles|
-  #     bulk_index(profiles)
-  #   end
-  # end
-
-  # def self.prepare_records(profiles)
-  #   profiles.map do |profile|
-  #     { index: { _id: profile.id, data: Searchable.as_indexed_json }}
-  #   end
-  # end
-
-  # def self.bulk_index(profiles)
-  #   Profile.__elasticsearch__.client.bulk({
-  #     index: ::Profile.__elasticsearch__.index_name,
-  #     type: ::Profile.__elasticsearch__.document_type,
-  #     body: prepare_records(profiles)
-  #     })
-  # end
 end
