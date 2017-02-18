@@ -1,21 +1,21 @@
-en:
+fr:
   i18n:
     language:
-      name: "English"
-      en: "English"
-      de: "German"
+      name: "Français"
+      en: "Anglais"
+      de: "Allemand"
   general:
-    add: "Add"
-    close: "Close"
-    edit: "Edit"
-    back: "Back"
-    delete: "Delete"
-    filter: "Filter"
-    create: "Create"
-    save: "Save"
-    search: "Search"
-    detailed_search: "Detailed search >>"
-    quick_search: "Quick search >>"
+    add: "Ajouter"
+    close: "Fermer"
+    edit: "Editer"
+    back: "Retour"
+    delete: "Supprimer"
+    filter: "Filtrer"
+    create: "Créer"
+    save: "Sauvegarder"
+    search: "Rechercher"
+    detailed_search: "Recherche détaillée >>"
+    quick_search: "Recherche rapide >>"
     ok: "Ok"
   admin:
     dashboard:
